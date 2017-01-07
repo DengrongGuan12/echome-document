@@ -17,7 +17,7 @@ produces:
 paths:
   /products:
     get:
-      summary: Product Types
+      summary: Product type
       description: |
         The Products endpoint returns information about the *Uber* products
         offered at a given location. The response includes the display name
