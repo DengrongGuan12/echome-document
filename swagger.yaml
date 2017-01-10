@@ -291,7 +291,8 @@ definitions:
         type: string
         description: 课时日期
       price:
-        type: double
+        type: number
+        format: double
         description: 课时价格
   Teacher:
     type: object 
