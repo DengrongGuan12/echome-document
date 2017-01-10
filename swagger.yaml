@@ -161,8 +161,9 @@ definitions:
     type: object
     properties:
       data:
-        type: object
-        $ref: '#/definitions/Carousel'
+        type: array
+        items:
+          $ref: '#/definitions/Carousel'
       error:
         type: object
         $ref: '#/definitions/Error'
