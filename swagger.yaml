@@ -272,7 +272,8 @@ definitions:
         type: string
         description: 课程编号
       star:
-        type: float
+        type: number
+        format: double
         description: 课程评分星级
   Period:
     type: object
