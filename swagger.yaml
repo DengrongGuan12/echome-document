@@ -291,7 +291,7 @@ definitions:
         type: string
         description: 课时日期
       price:
-        type: float
+        type: double
         description: 课时价格
   Teacher:
     type: object 
