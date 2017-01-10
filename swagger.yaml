@@ -15,37 +15,17 @@ basePath: /v1
 produces:
   - application/json
 paths:
-  /carousels:
+  /carousel:
     get:
       summary: Carousel type
-      description: |
-        获取轮播图列表
-      parameters:
-        # - name: latitude
-        #   in: query
-        #   description: Latitude component of location.
-        #   required: true
-        #   type: number
-        #   format: double
-        # - name: longitude
-        #   in: query
-        #   description: Longitude component of location.
-        #   required: true
-        #   type: number
-        #   format: double
+      description: 获取轮播图列表
       tags:
-        - Carousels
+        - Carousel
       responses:
         200:
           description: 轮播图列表
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/Carousel'
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Result1'
   /estimates/price:
     get:
       summary: Price Estimates
@@ -177,6 +157,15 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 definitions:
+  Result1:
+    type: object
+    properties:
+      data:
+        type: object
+        $ref: '#/definitions/Carousel'
+      error:
+        type: object
+        $ref: '#/definitions/Error'
   Carousel:
     type: object
     properties:
@@ -245,7 +234,7 @@ definitions:
         description: 昵称（姓名）
       img_url:
         type: string
-        description: 头像地址
+        description: 头像地址 
       account:
         type: string
         description: 账号
