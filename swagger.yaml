@@ -2,11 +2,11 @@
 # as a demonstration of an API spec in YAML
 swagger: '2.0'
 info:
-  title: Uber API
-  description: Move your app forward with the Uber API
+  title: CoursePlus API
+  description: CoursePlus API
   version: "1.0.0"
 # the domain of the service
-host: api.uber.com
+host: courseplus.cn
 # array of all schemes that your API supports
 schemes:
   - https
@@ -15,36 +15,33 @@ basePath: /v1
 produces:
   - application/json
 paths:
-  /products:
+  /carousels:
     get:
-      summary: Product type
+      summary: Carousel type
       description: |
-        The Products endpoint returns information about the *Uber* products
-        offered at a given location. The response includes the display name
-        and other details about each product, and lists the products in the
-        proper display order.
+        获取轮播图列表
       parameters:
-        - name: latitude
-          in: query
-          description: Latitude component of location.
-          required: true
-          type: number
-          format: double
-        - name: longitude
-          in: query
-          description: Longitude component of location.
-          required: true
-          type: number
-          format: double
+        # - name: latitude
+        #   in: query
+        #   description: Latitude component of location.
+        #   required: true
+        #   type: number
+        #   format: double
+        # - name: longitude
+        #   in: query
+        #   description: Longitude component of location.
+        #   required: true
+        #   type: number
+        #   format: double
       tags:
-        - Products
+        - Carousels
       responses:
         200:
-          description: An array of products
+          description: 轮播图列表
           schema:
             type: array
             items:
-              $ref: '#/definitions/Product'
+              $ref: '#/definitions/Carousel'
         default:
           description: Unexpected error
           schema:
@@ -180,6 +177,90 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 definitions:
+  Carousel:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+        description: 轮播图id
+      img_url:
+        type: string
+        description: 图片地址
+      link_url:
+        type: string
+        description: 跳转地址
+  School:
+    type: object
+    properties:
+      id: 
+        type: integer
+        format: int32
+        description: 学校id
+      name:
+        type: string
+        description: 学校名
+  Major:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+        description: 专业id
+      code: 
+        type: string
+        description: 专业代码
+      name:
+        type: string
+        description: 专业名
+      school:
+        type: object
+        $ref: '#/definitions/School'
+  Course:
+    type: object
+    properties: 
+      id:
+        type: integer
+        format: int32
+        description: 课程id
+      name: 
+        type: string
+        description: 课程名
+      teacher:
+        type: object
+        $ref: '#/definitions/Teacher'
+      major:
+        type: object
+        $ref: '#/definitions/Major'
+        description: 专业
+  Teacher:
+    type: object 
+    properties: 
+      id: 
+        type: integer
+        format: int32
+        description: 用户id
+      name:
+        type: string
+        description: 昵称（姓名）
+      img_url:
+        type: string
+        description: 头像地址
+      account:
+        type: string
+        description: 账号
+      sex:
+        type: integer
+        description: 1男 2女 3未知
+      introduction:
+        type: string
+        description: 红字（如2016 专业课排名第二）
+      description:
+        type: string
+        description: 黑字(具体的得分信息)
+      education:
+        type: string
+        description: 学历(如南京大学2016级环境学院研究生)
   Product:
     type: object
     properties:
@@ -272,6 +353,4 @@ definitions:
         type: integer
         format: int32
       message:
-        type: string
-      fields:
         type: string
