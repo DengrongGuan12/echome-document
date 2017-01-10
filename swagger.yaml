@@ -26,6 +26,41 @@ paths:
           description: 轮播图列表
           schema:
             $ref: '#/definitions/Result1'
+  # /course/qualityCourse:
+  #   get:
+  #     summary: Course type
+  #     description: 获取精品课程
+  #     parameters:
+  #       - name: offset
+  #         in: query
+  #         type: integer
+  #         format: int32
+  #         description: 偏移，默认是0.
+  #       - name: limit
+  #         in: query
+  #         type: integer
+  #         format: int32
+  #         description: 返回的数量，默认是5.
+  #     tags:
+  #       - Course
+      
+  /course/period:
+    get:
+      summary: Period type
+      description: 获取课时
+      parameters:
+        - name: course_id
+          in: query
+          type: integer
+          format: int32
+          description: 课程id
+      tags:
+        - Period
+      responses:
+        200:
+          description: 课时列表
+          schema:
+            $ref: '#/definitions/Result2'
   /estimates/price:
     get:
       summary: Price Estimates
@@ -167,6 +202,16 @@ definitions:
       error:
         type: object
         $ref: '#/definitions/Error'
+  Result2:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Period'
+      error:
+        type: object
+        $ref: '#/definitions/Error'
   Carousel:
     type: object
     properties:
@@ -223,6 +268,31 @@ definitions:
         type: object
         $ref: '#/definitions/Major'
         description: 专业
+      code:
+        type: string
+        description: 课程编号
+      star:
+        type: float
+        description: 课程评分星级
+  Period:
+    type: object
+    description: 课时
+    properties:
+      id: 
+        type: integer
+        description: 课时id
+      course_id: 
+        type: integer
+        description: 课程id
+      name:
+        type: string
+        description: 课时名称
+      date: 
+        type: string
+        description: 课时日期
+      price:
+        type: float
+        description: 课时价格
   Teacher:
     type: object 
     properties: 
