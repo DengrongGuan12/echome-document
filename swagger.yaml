@@ -80,12 +80,12 @@ paths:
           in: query
           type: integer
           format: int32
-          description: 专业id
+          description: 专业id(不传表示获取学校的课程)
         - name: school_id
           in: query
           type: integer
           format: int32
-          description: 学校id
+          description: 学校id(专业id和学校id都不传表示精品课程)
       tags:
         - Course
       responses:
@@ -104,6 +104,7 @@ paths:
           type: integer
           format: int32
           description: 课程id
+          required: true
       tags:
         - Period
       responses:
