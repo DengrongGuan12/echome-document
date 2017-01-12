@@ -28,6 +28,39 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Carousel'
+  /school:
+    get:
+      summary: School type
+      description: 获取学校列表
+      tags:
+        - School
+      responses:
+        200:
+          description: 学校列表
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/School'
+  /school/major:
+    get:
+      summary: Major type
+      description: 获取学校的专业列表
+      tags:
+        - Major
+      parameters:
+        - name: school_id
+          in: query
+          type: integer
+          format: int32
+          description: 学校id
+          required: true
+      responses:
+        200:
+          description: 专业列表
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Major'
   /course/search:
     get:
       summary: Course type
@@ -47,7 +80,12 @@ paths:
           in: query
           type: integer
           format: int32
-          description: 专业id，不传表示精品课程
+          description: 专业id
+        - name: school_id
+          in: query
+          type: integer
+          format: int32
+          description: 学校id
       tags:
         - Course
       responses:
@@ -75,6 +113,51 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Period'
+  /course/qualityComment:
+    get:
+      summary: QualityComment type
+      description: 获取首页优质评价列表
+      parameters:
+        - name: offset
+          type: integer
+          format: int32
+          description: 偏移，默认是0
+        - name: limit
+          type: integer
+          format: int32
+          description: 返回的数量，默认是5
+      tags:
+        - QualityComment
+      responses:
+        200:
+          description: 评价列表
+          schema:
+            type: object
+            $ref: '#/definitions/QualityComments'
+  /teacher:
+    get:
+      summary: Teacher type
+      description: 获取教师列表
+      parameters: 
+        - name: offset
+          in: query
+          type: integer
+          format: int32
+          description: 偏移，默认为0
+        - name: limit
+          in: query
+          type: integer
+          format: int32
+          description: 返回的数量,默认为5
+      tags:
+        - Teacher
+      reponses:
+        200:
+          description: 教师列表
+          schema:
+            type: object
+            $ref: '#/definitions/Teachers'
+
 definitions:
   
   Carousel:
@@ -100,6 +183,9 @@ definitions:
       name:
         type: string
         description: 学校名
+      img_url:
+        type: string
+        descrition: 学校logo
   Major:
     type: object
     properties:
@@ -176,6 +262,34 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Course'
+  QualityComment:
+    type: object
+    description: 首页的优质的评论
+    properties:
+      course:
+        type: object
+        description: 课程信息
+        $ref: '#/definitions/Course'
+      content:
+        type: string
+        description: 内容
+  QualityComments:
+    type: object
+    description: 优质评论列表
+    properties:
+      offset:
+        type: integer
+        description: 偏移
+      limit:
+        type: integer
+        description: 限制的数量
+      count: 
+        type: integer
+        description: 一共的数量
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/QualityComment'
   Period:
     type: object
     description: 课时
@@ -224,10 +338,22 @@ definitions:
       education:
         type: string
         description: 学历(如南京大学2016级环境学院研究生)
-  
-  
-  
-  
+  Teachers:
+    type: object
+    properties:
+      offset:
+        type: integer
+        description: 偏移
+      limit:
+        type: integer
+        description: 限制数量
+      count:
+        type: integer
+        description: 一共的数量
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/Teacher'
   Error:
     type: object
     properties:
