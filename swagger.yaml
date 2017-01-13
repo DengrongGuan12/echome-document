@@ -127,7 +127,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/QualityComments'
-  /teacher:
+  /teacher/qualityTeacher:
     get:
       summary: Teacher type
       description: 获取教师列表
@@ -211,13 +211,6 @@ definitions:
       name: 
         type: string
         description: 课程名
-      teacher:
-        type: object
-        $ref: '#/definitions/Teacher'
-      major:
-        type: object
-        $ref: '#/definitions/Major'
-        description: 专业
       code:
         type: string
         description: 课程编号
@@ -225,6 +218,16 @@ definitions:
         type: number
         format: double
         description: 课程评分星级
+      img_url:
+        type: string
+        description: 课程背景图片url
+      teacher:
+        type: object
+        $ref: '#/definitions/Teacher'
+      major:
+        type: object
+        $ref: '#/definitions/Major'
+        description: 专业
   Courses:
     type: object
     properties:
