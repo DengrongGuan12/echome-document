@@ -118,46 +118,28 @@ paths:
     get:
       summary: QualityComment type
       description: 获取首页优质评价列表
-      parameters:
-        - name: offset
-          type: integer
-          format: int32
-          description: 偏移，默认是0
-        - name: limit
-          type: integer
-          format: int32
-          description: 返回的数量，默认是5
       tags:
         - QualityComment
       responses:
         200:
           description: 评价列表
           schema:
-            type: object
-            $ref: '#/definitions/QualityComments'
+            type: array
+            items:
+              $ref: '#/definitions/QualityComments'
   /teacher:
     get:
       summary: Teacher type
       description: 获取教师列表
-      parameters: 
-        - name: offset
-          in: query
-          type: integer
-          format: int32
-          description: 偏移，默认为0
-        - name: limit
-          in: query
-          type: integer
-          format: int32
-          description: 返回的数量,默认为5
       tags:
         - Teacher
       responses:
         200:
           description: 教师列表
           schema:
-            type: object
-            $ref: '#/definitions/Teachers'
+            type: array
+            items:
+              $ref: '#/definitions/Teachers'
 definitions:
   
   Carousel:
