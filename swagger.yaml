@@ -274,6 +274,22 @@ definitions:
       content:
         type: string
         description: 内容
+      user_name:
+        type: string
+        description: 评价者用户名
+  User:
+    type: object
+    description: 用户信息
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      img_url:
+        type: string
+      gender:
+        type: integer
+        description: 1男 2女 3未知
   QualityComments:
     type: object
     description: 优质评论列表
