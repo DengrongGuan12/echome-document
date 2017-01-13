@@ -342,7 +342,7 @@ definitions:
       account:
         type: string
         description: 账号
-      sex:
+      gender:
         type: integer
         description: 1男 2女 3未知
       introduction:
