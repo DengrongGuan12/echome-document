@@ -221,6 +221,9 @@ definitions:
       img_url:
         type: string
         description: 课程背景图片url
+      buyer_num:
+        type: integer
+        description: 购买人数
       teacher:
         type: object
         $ref: '#/definitions/Teacher'
