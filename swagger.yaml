@@ -97,6 +97,7 @@ paths:
           schema:
             $ref: '#/definitions/Courses'
  
+   
    /course/documents:
     get:
       summary: 资料列表
@@ -172,7 +173,28 @@ paths:
             items:
               $ref: '#/definitions/Period'  
 
-
+   /pay/period:
+    get:
+      summary: 购买单独课时
+      description: 购买单独课时，获取charge对象
+      parameters:
+        - name: id
+          in: query
+          type: integer
+          format: int32
+          description: 课时id
+          required: true
+        - name: channel
+          in: query
+          type: string
+          description: 支付手段 目前就支付宝 alipay_pc_direct
+          required: true
+      tags:
+        - Pay
+      responses:
+        200:
+          description: ping++的charge对象，不用关心具体内容。
+   
    /course/qualityComment:
     get:
       summary: QualityComment type
@@ -243,7 +265,7 @@ paths:
             items:
               $ref: '#/definitions/Teacher'     
               
-
+    
     
               
 definitions:
