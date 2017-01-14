@@ -124,6 +124,32 @@ paths:
           description: 资料列表
           schema:
             $ref: '#/definitions/Documents'
+  
+   /course/previewDocument:
+    get:
+      summary: 预览文档
+      description: 获取文档预览信息，注意，需要根据用户购买状态返回完整的预览地址或者是部分的预览地址
+      parameters:
+        - name: id
+          in: query
+          type: integer
+          format: int32
+          description: 文档id
+          required: true
+      tags:
+        - Course
+      responses:
+        200:
+          description: 预览信息
+          schema:
+           properties:
+            preview_url:
+              type: string
+              description: 预览地址，若购买返回完整的
+            is_buy:
+              type: integer
+              format: int8
+              description: 是否购买，0或1
             
    /course/period:
     get:
