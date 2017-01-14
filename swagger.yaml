@@ -3,7 +3,7 @@
 swagger: '2.0'
 info:
   title: CoursePlus API
-  description: CoursePlus API, 返回值的json格式是默认用data包起来的
+  description: CoursePlus API, 返回值的json格式是默认用data包起来
   version: "1.0.0"
 # the domain of the service
 host: 120.26.65.167:8080
@@ -118,6 +118,7 @@ paths:
             items:
               $ref: '#/definitions/Period'  
 
+
    /course/qualityComment:
     get:
       summary: QualityComment type
@@ -131,7 +132,28 @@ paths:
             type: array
             items:
               $ref: '#/definitions/QualityComment'  
-              
+   
+   /course/price:
+    get:
+      summary: 买断价格
+      description: 获取课程的买断价格，包括现价、原价，需要根据用户登录情况以及用户购买情况区别计算，所以单独拎出一个接口
+      tags:
+        - Course
+      responses:
+        200:
+          description: 课程价格
+          schema:
+            properties: 
+              originPrice:
+                type: integer
+                format: int32
+                description: 原价，单位分，需要根据用户当前已购买的课时结算
+              currentPrice:
+                type: integer
+                format: int32
+                description:
+                  现价，单位分，需要用定好的买断价减去已购买的课程乘以折扣
+                  
    /teacher/qualityTeacher:
     get:
       summary: Teacher type
@@ -145,6 +167,9 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Teacher'     
+              
+
+    
               
 definitions:
   Carousel:
@@ -160,6 +185,8 @@ definitions:
       link_url:
         type: string
         description: 跳转地址
+        
+        
   School:
     type: object
     properties:
@@ -188,7 +215,23 @@ definitions:
       name:
         type: string
         description: 大类名称
-    
+  
+  SimpleMajor:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+        description: 专业id
+      code:
+        type: string
+        description: 专业代码
+      name:
+        type: string
+        description: 专业名
+      school:
+        $ref: '#/definitions/School'
+        
   Major:
     type: object
     properties:
@@ -206,6 +249,25 @@ definitions:
         $ref: '#/definitions/School'
       category:
         $ref: '#/definitions/MajorCategory'
+  
+  Subject:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+        description: 科目id
+      code:
+        type: string
+        description: 科目代码
+      major:
+        $ref: '#/definitions/Major'
+      name: 
+        type: string
+        description: 课程名
+      img_url:
+        type: string
+        description: 课程背景图片url
         
   Teacher:
     type: object 
@@ -235,6 +297,7 @@ definitions:
       education:
         type: string
         description: 学历(如南京大学2016级环境学院研究生)
+        
   SimpleCourse:
     type: object
     properties:
@@ -244,6 +307,9 @@ definitions:
         type: string
       code:
         type: string
+      major:
+        $ref: '#/definitions/SimpleMajor'
+        
       teacher:
         $ref: '#/definitions/SimpleTeacher'
         
@@ -256,6 +322,7 @@ definitions:
           type: string
         img_url: 
           type: string
+          
   Course:
     type: object
     properties: 
@@ -263,25 +330,17 @@ definitions:
         type: integer
         format: int32
         description: 课程id
-      name: 
-        type: string
-        description: 课程名
-      code:
-        type: string
-        description: 课程编号
+      subject:
+        $ref: '#/definitions/Subject'
       star:
         type: number
         format: double
         description: 课程评分星级
-      img_url:
-        type: string
-        description: 课程背景图片url
       buyer_num:
         type: integer
         description: 购买人数
       teacher:
         $ref: '#/definitions/Teacher'
-        
       major:
         $ref: '#/definitions/Major'
 
@@ -304,6 +363,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Course'
+      
   Period:
     type: object
     description: 课时
