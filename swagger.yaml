@@ -46,7 +46,7 @@ paths:
       summary: Major type
       description: 获取学校的专业列表
       tags:
-        - Major
+        - School
       parameters:
         - name: school_id
           in: query
@@ -106,7 +106,7 @@ paths:
           description: 课程id
           required: true
       tags:
-        - Period
+        - Course
       responses:
         200:
           description: 课时列表
@@ -119,7 +119,7 @@ paths:
       summary: QualityComment type
       description: 获取首页优质评价列表
       tags:
-        - QualityComment
+        - Course
       responses:
         200:
           description: 评价列表
