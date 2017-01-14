@@ -133,27 +133,22 @@ paths:
             items:
               $ref: '#/definitions/QualityComment'  
    
-   /course/price:
+   /course/courseDetail:
     get:
-      summary: 买断价格
-      description: 获取课程的买断价格，包括现价、原价，需要根据用户登录情况以及用户购买情况区别计算，所以单独拎出一个接口
+      summary: 获取课程详情
+      description: 获取课程详情，除了课程列表买断价格，包括现价、原价，需要根据用户登录情况以及用户购买情况区别计算
       tags:
         - Course
       responses:
         200:
           description: 课程价格
           schema:
-            properties: 
-              originPrice:
-                type: integer
-                format: int32
-                description: 原价，单位分，需要根据用户当前已购买的课时结算
-              currentPrice:
-                type: integer
-                format: int32
-                description:
-                  现价，单位分，需要用定好的买断价减去已购买的课程乘以折扣
-                  
+              $ref: '#/definitions/CourseDetail'  
+      
+             
+   
+   
+   
    /teacher/qualityTeacher:
     get:
       summary: Teacher type
@@ -343,7 +338,38 @@ definitions:
         $ref: '#/definitions/Teacher'
       major:
         $ref: '#/definitions/Major'
-
+      
+  CourseDetail:
+    type: object
+    properties: 
+      id:
+        type: integer
+        format: int32
+        description: 课程id
+      subject:
+        $ref: '#/definitions/Subject'
+      star:
+        type: number
+        format: double
+        description: 课程评分星级
+      buyer_num:
+        type: integer
+        description: 购买人数
+      origin_price:
+        type: integer
+        format: int32
+        description: 原价，单位分，需要根据用户当前已购买的课时结算
+      currentPrice:
+        type: integer
+        format: int32
+        description:
+                  现价，单位分，需要用定好的买断价减去已购买的课程乘以折扣
+      teacher:
+        $ref: '#/definitions/Teacher'
+      major:
+        $ref: '#/definitions/Major'
+        
+        
   Courses:
     type: object
     properties:
@@ -399,7 +425,7 @@ definitions:
       user_name:
         type: string
         description: 评价者用户名
-        
+  
   Teachers:
     type: object
     properties:
