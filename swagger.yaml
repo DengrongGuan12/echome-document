@@ -15,7 +15,7 @@ basePath: /v1
 produces:
   - application/json
 paths:
-  /carousel:
+   /carousel:
     get:
       summary: Carousel type
       description: 获取轮播图列表
@@ -28,7 +28,8 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Carousel'
-  /school:
+
+   /school:
     get:
       summary: School type
       description: 获取学校列表
@@ -41,7 +42,8 @@ paths:
             type: array
             items:
               $ref: '#/definitions/School'
-  /school/major:
+    
+   /school/major:
     get:
       summary: Major type
       description: 获取学校的专业列表
@@ -61,7 +63,8 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Major'
-  /course/search:
+   
+   /course/search:
     get:
       summary: Course type
       description: 获取课程列表
@@ -93,8 +96,8 @@ paths:
           description: 课程列表
           schema:
             $ref: '#/definitions/Courses'
-
-  /course/period:
+  
+   /course/period:
     get:
       summary: Period type
       description: 获取课时
@@ -113,8 +116,9 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Period'
-  /course/qualityComment:
+              $ref: '#/definitions/Period'  
+
+   /course/qualityComment:
     get:
       summary: QualityComment type
       description: 获取首页优质评价列表
@@ -126,8 +130,9 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/QualityComment'
-  /teacher/qualityTeacher:
+              $ref: '#/definitions/QualityComment'  
+              
+   /teacher/qualityTeacher:
     get:
       summary: Teacher type
       description: 获取优质教师列表
@@ -139,9 +144,9 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Teacher'
+              $ref: '#/definitions/Teacher'     
+              
 definitions:
-  
   Carousel:
     type: object
     properties:
@@ -167,7 +172,23 @@ definitions:
         description: 学校名
       img_url:
         type: string
-        descrition: 学校logo
+        description: 学校logo
+  
+  MajorCategory:
+    type: object
+    description: 专业大类
+    properties:
+      id: 
+        type: integer
+        format: int32
+        description: 大类id
+      code:
+        type: string
+        description: 大类代码
+      name:
+        type: string
+        description: 大类名称
+    
   Major:
     type: object
     properties:
@@ -187,20 +208,55 @@ definitions:
       category:
         type: object
         $ref: '#/definitions/MajorCategory'
-  MajorCategory:
-    type: object
-    description: 专业大类
-    properties:
+  Teacher:
+    type: object 
+    properties: 
       id: 
         type: integer
         format: int32
-        description: 大类id
-      code:
-        type: string
-        description: 大类代码
+        description: 用户id
       name:
         type: string
-        description: 大类名称
+        description: 昵称（姓名）
+      img_url:
+        type: string
+        description: 头像地址 
+      account:
+        type: string
+        description: 账号
+      gender:
+        type: integer
+        description: 1男 2女 3未知
+      introduction:
+        type: string
+        description: 红字（如2016 专业课排名第二）
+      description:
+        type: string
+        description: 黑字(具体的得分信息)
+      education:
+        type: string
+        description: 学历(如南京大学2016级环境学院研究生)
+  SimpleCourse:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      code:
+        type: string
+      teacher:
+        type: object
+        $ref: '#/definitions/SimpleTeacher'
+  SimpleTeacher:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        img_url: 
+          type: string
   Course:
     type: object
     properties: 
@@ -231,18 +287,7 @@ definitions:
         type: object
         $ref: '#/definitions/Major'
         description: 专业
-  SimpleCourse:
-    type: object
-    properties:
-      id:
-        type: integer
-      name:
-        type: string
-      code:
-        type: string
-      teacher:
-        type: object
-        $ref: '#/definitions/SimpleTeacher'
+  
   Courses:
     type: object
     properties:
@@ -262,52 +307,6 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Course'
-  QualityComment:
-    type: object
-    description: 首页的优质的评论
-    properties:
-      id: 
-        type: integer
-      course:
-        type: object
-        description: 课程信息
-        $ref: '#/definitions/SimpleCourse'
-      content:
-        type: string
-        description: 内容
-      user_name:
-        type: string
-        description: 评价者用户名
-  User:
-    type: object
-    description: 用户信息
-    properties:
-      id:
-        type: integer
-      name:
-        type: string
-      img_url:
-        type: string
-      gender:
-        type: integer
-        description: 1男 2女 3未知
-  QualityComments:
-    type: object
-    description: 优质评论列表
-    properties:
-      offset:
-        type: integer
-        description: 偏移
-      limit:
-        type: integer
-        description: 限制的数量
-      count: 
-        type: integer
-        description: 一共的数量
-      list:
-        type: array
-        items:
-          $ref: '#/definitions/QualityComment'
   Period:
     type: object
     description: 课时
@@ -328,43 +327,23 @@ definitions:
         type: number
         format: double
         description: 课时价格
-  Teacher:
-    type: object 
-    properties: 
+  
+  QualityComment:
+    type: object
+    description: 首页的优质的评论
+    properties:
       id: 
         type: integer
-        format: int32
-        description: 用户id
-      name:
+      course:
+        type: object
+        description: 课程信息
+        $ref: '#/definitions/SimpleCourse'
+      content:
         type: string
-        description: 昵称（姓名）
-      img_url:
+        description: 内容
+      user_name:
         type: string
-        description: 头像地址 
-      account:
-        type: string
-        description: 账号
-      gender:
-        type: integer
-        description: 1男 2女 3未知
-      introduction:
-        type: string
-        description: 红字（如2016 专业课排名第二）
-      description:
-        type: string
-        description: 黑字(具体的得分信息)
-      education:
-        type: string
-        description: 学历(如南京大学2016级环境学院研究生)
-  SimpleTeacher:
-    type: object
-    properties:
-      id:
-        type: integer
-      name:
-        type: string
-      img_url: 
-        type: string
+        description: 评价者用户名
   Teachers:
     type: object
     properties:
@@ -382,10 +361,12 @@ definitions:
         items:
           $ref: '#/definitions/Teacher'
   Error:
-    type: object
-    properties:
-      code:
-        type: integer
-        format: int32
-      message:
-        type: string
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+          
+    
