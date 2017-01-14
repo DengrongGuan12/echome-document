@@ -136,17 +136,43 @@ paths:
    /course/courseDetail:
     get:
       summary: 获取课程详情
+      parameters:
+        - name: id
+          in: query
+          type: integer
+          format: int32
+          description: 课程id
       description: 获取课程详情，除了课程列表买断价格，包括现价、原价，需要根据用户登录情况以及用户购买情况区别计算
       tags:
         - Course
       responses:
         200:
-          description: 课程价格
+          description: 课程详情
           schema:
               $ref: '#/definitions/CourseDetail'  
       
-             
-   
+   /course/periodDetail:
+    get:
+      summary: 获取课时详情
+      parameters:
+        - name: id
+          in: query
+          type: integer
+          format: int32
+          description: 课时id
+      description: 获取课程详情，除了课程列表买断价格，包括现价、原价，需要根据用户登录情况以及用户购买情况区别计算
+      tags:
+        - Course
+      responses:
+        200:
+          description: 课时的内容
+          schema:
+            properties:
+              live:
+                $ref: '#/definitions/Live'
+              content:
+                type: string
+                description: 富文本html
    
    
    /teacher/qualityTeacher:
@@ -425,7 +451,31 @@ definitions:
       user_name:
         type: string
         description: 评价者用户名
-  
+        
+  Live:
+    type: object
+    description: 视频详情
+    properties:
+      id:
+        type: integer
+        format: int32
+        description: 视频id
+      start_time:
+        type: string
+        description: 开始时间 格式
+      state:  
+        type: string
+        description: 视频状态 CODED、CODING、ING、BEFORE
+      preview_url:
+        type: string
+        description: 预览地址 10分钟视频
+      complete_url:
+        type: string
+        description: 完整地址，注意如果没有购买不要返回
+      live_url:
+        type: string
+        description: 直播地址
+      
   Teachers:
     type: object
     properties:
