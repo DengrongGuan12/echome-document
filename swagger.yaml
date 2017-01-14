@@ -194,7 +194,29 @@ paths:
       responses:
         200:
           description: ping++的charge对象，不用关心具体内容。
-   
+  
+   /pay/document:
+    get:
+      summary: 购买单门资料
+      description: 购买单门资料，获取charge对象
+      parameters:
+        - name: id
+          in: query
+          type: integer
+          format: int32
+          description: 资料id
+          required: true
+        - name: channel
+          in: query
+          type: string
+          description: 支付手段 目前就支付宝 alipay_pc_direct
+          required: true
+      tags:
+        - Pay
+      responses:
+        200:
+          description: ping++的charge对象，不用关心具体内容。
+          
    /course/qualityComment:
     get:
       summary: QualityComment type
