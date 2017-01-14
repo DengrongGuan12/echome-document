@@ -466,6 +466,11 @@ definitions:
         format: int32
         description:
                   现价，单位分，需要用定好的买断价减去已购买的课程乘以折扣
+      is_buy:
+        type: integer
+        format: int8
+        description: 是否买断， 0或1
+        
       teacher:
         $ref: '#/definitions/Teacher'
       major:
@@ -512,6 +517,10 @@ definitions:
         type: number
         format: double
         description: 课时价格
+      is_buy:
+        type: integer
+        format: int8
+        description: 是否购买， 0或1
   
   QualityComment:
     type: object
