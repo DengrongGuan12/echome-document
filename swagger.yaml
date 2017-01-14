@@ -126,11 +126,11 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/QualityComments'
+              $ref: '#/definitions/QualityComment'
   /teacher/qualityTeacher:
     get:
       summary: Teacher type
-      description: 获取教师列表
+      description: 获取优质教师列表
       tags:
         - Teacher
       responses:
@@ -139,7 +139,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Teachers'
+              $ref: '#/definitions/Teacher'
 definitions:
   
   Carousel:
@@ -186,8 +186,8 @@ definitions:
         $ref: '#/definitions/School'
       category:
         type: object
-        $ref: '#/definitions/Major_Category'
-  Major_Category:
+        $ref: '#/definitions/MajorCategory'
+  MajorCategory:
     type: object
     description: 专业大类
     properties:
@@ -231,6 +231,18 @@ definitions:
         type: object
         $ref: '#/definitions/Major'
         description: 专业
+  SimpleCourse:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      code:
+        type: string
+      teacher:
+        type: object
+        $ref: '#/definitions/SimpleTeacher'
   Courses:
     type: object
     properties:
@@ -254,10 +266,12 @@ definitions:
     type: object
     description: 首页的优质的评论
     properties:
+      id: 
+        type: integer
       course:
         type: object
         description: 课程信息
-        $ref: '#/definitions/Course'
+        $ref: '#/definitions/SimpleCourse'
       content:
         type: string
         description: 内容
@@ -342,6 +356,15 @@ definitions:
       education:
         type: string
         description: 学历(如南京大学2016级环境学院研究生)
+  SimpleTeacher:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      img_url: 
+        type: string
   Teachers:
     type: object
     properties:
