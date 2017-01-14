@@ -96,7 +96,35 @@ paths:
           description: 课程列表
           schema:
             $ref: '#/definitions/Courses'
-  
+ 
+   /course/documents:
+    get:
+      summary: 资料列表
+      description: 获取资料列表
+      parameters:
+        - name: offset
+          in: query
+          type: integer
+          format: int32
+          description: 偏移，默认是0.
+        - name: limit
+          in: query
+          type: integer
+          format: int32
+          description: 返回的数量，默认是5.
+        - name: course_id
+          in: query
+          type: integer
+          format: int32
+          description: 课程id
+      tags:
+        - Course
+      responses:
+        200:
+          description: 资料列表
+          schema:
+            $ref: '#/definitions/Documents'
+            
    /course/period:
     get:
       summary: Period type
@@ -475,7 +503,50 @@ definitions:
       live_url:
         type: string
         description: 直播地址
-      
+  
+  Document:
+    type: object
+    description: 资料信息
+    properties:
+      id: 
+        type: integer
+      name:
+        type: string
+        description: 资料名称
+      price:
+        type: integer
+        format: int32
+        description: 资料价格  0表示赠送
+      origin_price:
+        type: integer
+        format: int32
+        description: 资料原价
+      cover_path:
+        type: string
+        description: 封面地址
+      buy_count:
+        type: integer
+        format: int32
+        description: 购买数量
+  
+  
+  Documents:
+    type: object
+    properties:
+      offset:
+        type: integer
+        description: 偏移
+      limit:
+        type: integer
+        description: 限制数量
+      count:
+        type: integer
+        description: 一共的数量
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/Document'
+          
   Teachers:
     type: object
     properties:
