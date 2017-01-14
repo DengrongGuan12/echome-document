@@ -203,11 +203,10 @@ definitions:
         type: string
         description: 专业名
       school:
-        type: object
         $ref: '#/definitions/School'
       category:
-        type: object
         $ref: '#/definitions/MajorCategory'
+        
   Teacher:
     type: object 
     properties: 
@@ -246,8 +245,8 @@ definitions:
       code:
         type: string
       teacher:
-        type: object
         $ref: '#/definitions/SimpleTeacher'
+        
   SimpleTeacher:
       type: object
       properties:
@@ -281,13 +280,11 @@ definitions:
         type: integer
         description: 购买人数
       teacher:
-        type: object
         $ref: '#/definitions/Teacher'
+        
       major:
-        type: object
         $ref: '#/definitions/Major'
-        description: 专业
-  
+
   Courses:
     type: object
     properties:
@@ -335,8 +332,6 @@ definitions:
       id: 
         type: integer
       course:
-        type: object
-        description: 课程信息
         $ref: '#/definitions/SimpleCourse'
       content:
         type: string
@@ -344,6 +339,7 @@ definitions:
       user_name:
         type: string
         description: 评价者用户名
+        
   Teachers:
     type: object
     properties:
