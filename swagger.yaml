@@ -482,6 +482,9 @@ definitions:
       buyer_num:
         type: integer
         description: 购买人数
+      name:
+        type: string
+        description: 课程名
       teacher:
         $ref: '#/definitions/Teacher'
       major:
