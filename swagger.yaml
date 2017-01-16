@@ -271,8 +271,32 @@ paths:
               content:
                 type: string
                 description: 富文本html
-   
-   
+   ／course/liveDetail:
+    get:
+      summary: 直播页获取直播相关信息
+      parameters:
+        - name: id
+          in: query
+          type: integer
+          format: int32
+          description: 直播id
+      description: 获取直播间相关信息
+      tags:
+        - Course
+      responses:
+        200:
+          description: 直播信息
+          schema:
+            properties:
+              live:
+                type: object
+                $ref: '#/definitions/SimpleLive'
+              course:
+                type: object
+                $ref: '#/definitions/SimpleCourse'
+              period:
+                type: object
+                $ref: '#/definitions/SimplePeriod'
    /teacher/qualityTeacher:
     get:
       summary: Teacher type
@@ -529,6 +553,9 @@ definitions:
       course_id: 
         type: integer
         description: 课程id
+      number:
+        type: integer
+        description: 课时编号
       name:
         type: string
         description: 课时名称
@@ -543,7 +570,19 @@ definitions:
         type: integer
         format: int8
         description: 是否购买， 0或1
-  
+  SimplePeriod:
+    type: object
+    description: 课时
+    properties:
+      id:
+        type: integer
+        description: id
+      name:
+        type: string
+        description: 名称
+      number:
+        type: integer
+        description: 课时编号
   QualityComment:
     type: object
     description: 首页的优质的评论
@@ -582,7 +621,16 @@ definitions:
       live_url:
         type: string
         description: 直播地址
-  
+  SimpleLive:
+    type: object
+    description: 简单live
+    properties:
+      id: 
+        type: integer
+        description: id
+      live_url:
+        type: string
+        description: 直播地址
   Document:
     type: object
     description: 资料信息
