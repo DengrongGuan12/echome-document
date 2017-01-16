@@ -403,11 +403,9 @@ definitions:
       code:
         type: string
         description: 科目代码
-      major:
-        $ref: '#/definitions/Major'
       name: 
         type: string
-        description: 课程名
+        description: 科目名
       img_url:
         type: string
         description: 课程背景图片url
