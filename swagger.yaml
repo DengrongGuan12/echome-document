@@ -271,7 +271,7 @@ paths:
               content:
                 type: string
                 description: 富文本html
-   ／course/liveDetail:
+   /course/liveDetail:
     get:
       summary: 直播页获取直播相关信息
       parameters:
