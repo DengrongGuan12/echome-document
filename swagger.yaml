@@ -16,6 +16,61 @@ produces:
   - application/json
 paths:
   
+   /user/changePassword:
+    post:
+      summary: 修改密码
+      description: 修改密码
+      tags:
+        - User
+      parameters:
+        - name: json
+          in: body
+          description: 用户密码信息
+          required: true
+          schema:
+            properties:
+              old_password:
+                type: string
+                description: 旧密码，需加密
+              new_password:
+                type: string
+                description: 新密码，需加密
+              
+      responses:
+        200:
+          description: 修改结果，直接看是否有error，有error代表失败，没有就代表成功
+
+   /user/updateInfo:
+    post:
+      summary: 修改个人资料
+      description: 修改个人资料
+      tags:
+        - User
+      parameters:
+        - name: json
+          in: body
+          description: 用户信息, 内容均可选
+          required: true
+          schema:
+            properties:
+              nickname:
+                type: string
+                description: 用户昵称
+              gender:
+                type: integer
+                format: int4
+                description: 1男 2女 3未知
+              img_url:
+                type: string
+                description: 头像的key，需要提前使用七牛的插件上传
+ 
+      responses:
+        200:
+          description: 若成功，返回最新的个人信息，否则有error
+          schema:
+            $ref: "#/definitions/User"
+
+          
    /user/sendVerifyCode:
     get:
       summary: verifyCode
