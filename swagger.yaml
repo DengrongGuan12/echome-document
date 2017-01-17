@@ -40,6 +40,29 @@ paths:
         200:
           description: 修改结果，直接看是否有error，有error代表失败，没有就代表成功
 
+   /user/resetPassword:
+    post:
+      summary: 重置密码
+      description: 重置密码
+      tags:
+        - User
+      parameters:
+        - name: json
+          in: body
+          description: 用户密码信息
+          required: true
+          schema:
+            properties:
+              verify_code:
+                type: string
+                description: 验证码
+              new_password:
+                type: string
+                description: 新密码
+              
+      responses:
+        200:
+          description: 修改结果，直接看是否有error，有error代表失败，没有就代表成功
    /user/updateInfo:
     post:
       summary: 修改个人资料
