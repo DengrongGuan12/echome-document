@@ -320,6 +320,16 @@ paths:
           type: integer
           format: int32
           description: 评论id
+        - name: offset
+          in: query
+          type: integer
+          format: int32
+          description: 偏移，默认是0.
+        - name: limit
+          in: query
+          type: integer
+          format: int32
+          description: 返回的数量，默认是5.
       tags:
         - Course
       responses:
