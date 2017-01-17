@@ -339,6 +339,37 @@ paths:
             type: array
             items:
               $ref: '#/definitions/CourseComment' 
+
+
+   /course/questions:
+    get:
+      summary: 问题列表
+      description: 获取问题列表
+      parameters:
+        - name: course_id
+          in: query
+          type: integer
+          format: int32
+          description: 课程id
+        - name: offset
+          in: query
+          type: integer
+          format: int32
+          description: 偏移，默认是0.
+        - name: limit
+          in: query
+          type: integer
+          format: int32
+          description: 返回的数量，默认是5.
+      tags:
+        - Course
+      responses:
+        200:
+          description: 评论列表
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Question' 
               
    /course/makeGrade:
     post:
@@ -1066,7 +1097,46 @@ definitions:
       order_info:
         type: string
         description: 订单信息，可能是空的
+  
+  Question:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+        description: 问题id
+      content:
+        type: string
+        description: 问题内容
+      create_time:
+        type: string
+        description: 发布时间
+      answer:
+        $ref: '#/definitions/Answer'
+
+  
+  Answer:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+        description: 回答id
+      content:
+        type: string
+        description: 回答内容，可能是空的，如果是空的代表需要购买，如果是文本就是内容，如果是音频回答是音频地址
+      type:
+        type: string
+        description: 类型，"VOICE" "TEXT"
+      length:
+        type: integer
+        format: int32
+        description: 长度，如果是VOICE就是秒，如果是TEXT就是字数
         
+      
+      create_time:
+        type: string
+        description: 发布时间    
         
   Error:
       type: object
