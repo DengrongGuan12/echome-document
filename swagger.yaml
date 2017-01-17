@@ -298,7 +298,25 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Period'  
-
+  
+   /course/shopping_list:
+    get:
+      summary: 买断商品列表
+      description: 买断商品列表
+      parameters:
+        - name: course_id
+          in: query
+          type: integer
+          format: int32
+          description: 课程id
+          required: true
+      tags:
+        - Course
+      responses:
+        200:
+          description: 商品详情
+          schema:
+            $ref: '#/definitions/ShoppingList'  
    /pay/period:
     get:
       summary: 购买单独课时
@@ -707,6 +725,32 @@ definitions:
       number:
         type: integer
         description: 课时编号
+        
+  ShoppingList:
+    type: object
+    description: 买断商品列表
+    properties:
+      period_list:
+        type: array
+        items:
+          $ref: '#/definitions/Period'
+        description: 课时列表
+      document_list:
+        type: array
+        items:
+          $ref: '#/definitions/SimpleDocument'
+      question_count:
+        type: integer
+        format: int32
+        description: 提问次数
+      price:  
+        type: integer
+        format: int32
+        description: 现价
+        
+        
+      
+          
   QualityComment:
     type: object
     description: 首页的优质的评论
@@ -721,7 +765,7 @@ definitions:
       user_name:
         type: string
         description: 评价者用户名
-        
+   
   Live:
     type: object
     description: 视频详情
@@ -780,7 +824,17 @@ definitions:
         format: int32
         description: 购买数量
   
-  
+  SimpleDocument:
+    type: object
+    description: 资料简单信息
+    properties:
+      id: 
+        type: integer
+      name:
+        type: string
+        description: 资料名称
+
+        
   Documents:
     type: object
     properties:
@@ -797,7 +851,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Document'
-          
+        
   Teachers:
     type: object
     properties:
