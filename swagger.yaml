@@ -834,9 +834,6 @@ definitions:
       id: 
         type: integer
         description: 课时id
-      course_id: 
-        type: integer
-        description: 课程id
       number:
         type: integer
         description: 课时编号
@@ -904,9 +901,9 @@ definitions:
       content:
         type: string
         description: 内容
-      user_name:
-        type: string
-        description: 评价者用户名
+      user:
+        $ref: '#/definitions/User'
+
    
   Live:
     type: object
@@ -1060,8 +1057,8 @@ definitions:
         type: string
         description: 订单信息，可能是空的
         
+        
   Error:
-  
       type: object
       properties:
         code:
