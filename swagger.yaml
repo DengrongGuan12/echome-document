@@ -262,7 +262,7 @@ paths:
       summary: 预览文档
       description: 获取文档预览信息，注意，需要根据用户购买状态返回完整的预览地址或者是部分的预览地址
       parameters:
-        - name: id
+        - name: document_id
           in: query
           type: integer
           format: int32
@@ -327,7 +327,7 @@ paths:
       summary: 购买单独课时
       description: 购买单独课时，获取charge对象
       parameters:
-        - name: id
+        - name: period_id
           in: query
           type: integer
           format: int32
@@ -349,7 +349,7 @@ paths:
       summary: 购买单门资料
       description: 购买单门资料，获取charge对象
       parameters:
-        - name: id
+        - name: document_id
           in: query
           type: integer
           format: int32
@@ -384,7 +384,7 @@ paths:
     get:
       summary: 获取课程详情
       parameters:
-        - name: id
+        - name: course_id
           in: query
           type: integer
           format: int32
@@ -402,7 +402,7 @@ paths:
     get:
       summary: 获取课时详情
       parameters:
-        - name: id
+        - name: period_id
           in: query
           type: integer
           format: int32
@@ -424,7 +424,7 @@ paths:
     get:
       summary: 直播页获取直播相关信息
       parameters:
-        - name: id
+        - name: live_id
           in: query
           type: integer
           format: int32
