@@ -157,7 +157,7 @@ paths:
           required: true
           schema:
             properties:
-              username:
+              account:
                 type: string
                 description: 用户名，手机号
               password:
