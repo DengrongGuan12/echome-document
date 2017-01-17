@@ -543,6 +543,28 @@ paths:
       responses:
         200:
           description: ping++的charge对象，不用关心具体内容。
+
+   /pay/answer:
+    get:
+      summary: 购买偷看机会
+      description: 购买偷看机会，获取charge对象
+      parameters:
+        - name: question_id
+          in: query
+          type: integer
+          format: int32
+          description: 问题id
+          required: true
+        - name: channel
+          in: query
+          type: string
+          description: 支付手段 目前就支付宝 alipay_pc_direct
+          required: true
+      tags:
+        - Pay
+      responses:
+        200:
+          description: ping++的charge对象，不用关心具体内容
           
    /course/qualityComment:
     get:
