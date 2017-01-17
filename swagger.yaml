@@ -31,10 +31,10 @@ paths:
             properties:
               old_password:
                 type: string
-                description: 旧密码，需加密
+                description: 旧密码
               new_password:
                 type: string
-                description: 新密码，需加密
+                description: 新密码
               
       responses:
         200:
@@ -105,7 +105,7 @@ paths:
                 description: 用户名，手机号
               password:
                 type: string
-                description: 用户密码，需要加密
+                description: 用户密码
               verify_code:
                 type: string
                 description: 验证码
@@ -134,7 +134,7 @@ paths:
                 description: 用户名，手机号
               password:
                 type: string
-                description: 用户密码，需要加密
+                description: 用户密码
       responses:
         200:
           description: 登录结果，若登录成功会返回用户信息并且Cookie
