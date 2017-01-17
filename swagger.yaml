@@ -330,6 +330,70 @@ paths:
             items:
               $ref: '#/definitions/CourseComment' 
               
+   /course/makeGrade:
+    post:
+      summary: 发布评价
+      description: 必须是完成了购买课时或者买断课程的订单后才可以评价，注意后台需要校验一下，针对同一订单只能评价一次
+      tags:
+        - User
+      parameters:
+        - name: json
+          in: body
+          description: 评价信息
+          required: true
+          schema:
+            properties:
+              content:
+                type: string
+                description: 内容
+              course_id:
+                type: integer
+                format: int32
+                description: 课程id
+              order_id:
+                type: integer
+                format: int32
+                description: 对应的订单id
+              start:
+                type: number
+                format: float
+                description: 评分 0.5-5.0
+      responses:
+        200:
+          description: 评价结果，直接看是否有error，有error代表失败，没有就代表成功
+
+   /course/postComment:
+    post:
+      summary: 发布评论
+      description: 发布评论，注意这个接口仅仅是用来发布评论而不是评价
+      tags:
+        - User
+      parameters:
+        - name: json
+          in: body
+          description: 评论信息
+          required: true
+          schema:
+            properties:
+              content:
+                type: string
+                description: 内容，如果是回复某条子评论，请前端自行拼接内容，即在前面加入 回复XXX：
+              course_id:
+                type: string
+                description: 课程id
+              comment_id:
+                type: integer
+                format: int32
+                description: 回复的根评论的id，可以不传
+              reply_id:
+                type: integer
+                format: int32
+                description: 实际回复的评论id，可不传
+      responses:
+        200:
+          description: 评论结果，直接看是否有error，有error代表失败，没有就代表成功
+ 
+          
    /course/previewDocument:
     get:
       summary: 预览文档
