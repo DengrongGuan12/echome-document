@@ -15,6 +15,77 @@ basePath: /v1
 produces:
   - application/json
 paths:
+  
+   /user/sendVerifyCode:
+    get:
+      summary: verifyCode
+      description: 发送验证码
+      tags:
+        - User
+      parameters:
+        - name: phone
+          in: query
+          description: 手机号码
+          required: true
+          type: string
+      responses:
+        200:
+          description: 发送结果，直接看是否有error，有error代表失败，没有就代表成功
+              
+   /user/register:
+    post:
+      summary: 注册
+      description: 用户注册
+      tags:
+        - User
+      parameters:
+        - name: json
+          in: body
+          description: 用户信息
+          required: true
+          schema:
+            properties:
+              username:
+                type: string
+                description: 用户名，手机号
+              password:
+                type: string
+                description: 用户密码，需要加密
+              verify_code:
+                type: string
+                description: 验证码
+              nickname:
+                type: string
+                description: 用户昵称
+      responses:
+        200:
+          description: 注册结果，直接看是否有error，有error代表失败，没有就代表成功
+
+   /user/login:
+    post:
+      summary: 登录
+      description: 用户登录
+      tags:
+        - User
+      parameters:
+        - name: json
+          in: body
+          description: 登录信息
+          required: true
+          schema:
+            properties:
+              username:
+                type: string
+                description: 用户名，手机号
+              password:
+                type: string
+                description: 用户密码，需要加密
+      responses:
+        200:
+          description: 登录结果，若登录成功会返回用户信息并且Cookie
+          schema:
+            $ref: "#/definitions/User"
+  
    /carousel:
     get:
       summary: Carousel type
@@ -96,7 +167,7 @@ paths:
           description: 课程列表
           schema:
             $ref: '#/definitions/Courses'
- 
+            
    
    /course/documents:
     get:
@@ -289,13 +360,10 @@ paths:
           schema:
             properties:
               live:
-                type: object
                 $ref: '#/definitions/SimpleLive'
               course:
-                type: object
                 $ref: '#/definitions/SimpleCourse'
               period:
-                type: object
                 $ref: '#/definitions/SimplePeriod'
    /teacher/qualityTeacher:
     get:
@@ -652,7 +720,7 @@ definitions:
       cover_path:
         type: string
         description: 封面地址
-      buy_count:
+      buyer_num:
         type: integer
         format: int32
         description: 购买数量
@@ -691,6 +759,29 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Teacher'
+          
+
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+        description: 用户id
+      account:
+        type: string
+        description: 账户名（手机号）
+      img_url:
+        type: string
+        description: 头像地址
+      name:
+        type: string
+        description: 昵称
+      gender:
+        type: integer
+        format: int4
+        description: 1男 2女 3未知
+        
   Error:
       type: object
       properties:
