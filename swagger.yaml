@@ -256,7 +256,57 @@ paths:
           description: 资料列表
           schema:
             $ref: '#/definitions/Documents'
-  
+ 
+   /course/comments:
+    get:
+      summary: 评论列表
+      description: 获取评论列表
+      parameters:
+        - name: offset
+          in: query
+          type: integer
+          format: int32
+          description: 偏移，默认是0.
+        - name: limit
+          in: query
+          type: integer
+          format: int32
+          description: 返回的数量，默认是5.
+        - name: course_id
+          in: query
+          type: integer
+          format: int32
+          description: 课程id
+      tags:
+        - Course
+      responses:
+        200:
+          description: 评论列表
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CourseComment' 
+   
+   /course/commentReply:
+    get:
+      summary: 评论列表
+      description: 获取评论列表
+      parameters:
+        - name: comment_id
+          in: query
+          type: integer
+          format: int32
+          description: 评论id
+      tags:
+        - Course
+      responses:
+        200:
+          description: 评论列表
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CourseComment' 
+              
    /course/previewDocument:
     get:
       summary: 预览文档
@@ -896,7 +946,35 @@ definitions:
         format: int4
         description: 1男 2女 3未知
         
+  CourseComment:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+        description: 评论id
+      content:
+        type: string
+        description: 评论内容
+      create_time:
+        type: string
+        description: 发布时间
+      star:
+        type: number
+        format: float
+        description: 星级，0代表没有评分 0.5-5 
+      replyCount:
+        type: integer
+        format: int32
+        description: 回复数量
+      user:
+        $ref: '#/definitions/User'
+      order_info:
+        type: string
+        description: 订单信息，可能是空的
+        
   Error:
+  
       type: object
       properties:
         code:
