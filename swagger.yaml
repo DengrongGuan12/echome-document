@@ -644,8 +644,6 @@ paths:
                 $ref: '#/definitions/SimpleLive'
               course:
                 $ref: '#/definitions/SimpleCourse'
-              period:
-                $ref: '#/definitions/SimplePeriod'
    /teacher/qualityTeacher:
     get:
       summary: Teacher type
@@ -1004,6 +1002,9 @@ definitions:
       live_url:
         type: string
         description: 直播地址
+      period:
+        type: object
+        $ref: '#/definitions/SimplePeriod'
   Document:
     type: object
     description: 资料信息
