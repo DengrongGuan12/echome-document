@@ -376,7 +376,7 @@ paths:
       summary: 发布评价
       description: 必须是完成了购买课时或者买断课程的订单后才可以评价，注意后台需要校验一下，针对同一订单只能评价一次
       tags:
-        - User
+        - Course
       parameters:
         - name: json
           in: body
@@ -408,7 +408,7 @@ paths:
       summary: 发布评论
       description: 发布评论，注意这个接口仅仅是用来发布评论而不是评价
       tags:
-        - User
+        - Course
       parameters:
         - name: json
           in: body
@@ -1110,7 +1110,7 @@ definitions:
         type: number
         format: float
         description: 星级，0代表没有评分 0.5-5 
-      replyCount:
+      reply_count:
         type: integer
         format: int32
         description: 回复数量
