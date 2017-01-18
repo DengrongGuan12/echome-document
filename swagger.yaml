@@ -53,6 +53,9 @@ paths:
           required: true
           schema:
             properties:
+              account:
+                type: string
+                description: 账号
               verify_code:
                 type: string
                 description: 验证码
