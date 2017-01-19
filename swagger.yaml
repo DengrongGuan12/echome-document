@@ -661,6 +661,11 @@ paths:
     get:
       summary: 获取七牛上传文件的token
       description: 获取七牛上传文件的需要的token
+      parameters:
+        - name: bucket
+          in: query
+          type: string
+          description: bucket名称 上传图片是course-plus-pic 上传文档是course-plus-document
       tags:
         - Qiniu
       responses:
