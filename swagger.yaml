@@ -656,11 +656,20 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Teacher'     
-              
-    
-    
-              
+              $ref: '#/definitions/Teacher'
+   /qiniu/getUploadToken:
+    get:
+      summary: 获取七牛上传文件的token
+      description: 获取七牛上传文件的需要的token
+      tags:
+        - Qiniu
+      responses:
+        200:
+          description: token
+          schema:
+            properties:
+              token:
+                type: string
 definitions:
   Carousel:
     type: object
