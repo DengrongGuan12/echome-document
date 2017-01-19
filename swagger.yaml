@@ -86,7 +86,7 @@ paths:
                 type: integer
                 format: int4
                 description: 1男 2女 3未知
-              img_url:
+              img_key:
                 type: string
                 description: 头像的key，需要提前使用七牛的插件上传
  
