@@ -485,7 +485,7 @@ paths:
             items:
               $ref: '#/definitions/Period'  
   
-   /course/shopping_list:
+   /course/shoppingList:
     get:
       summary: 买断商品列表
       description: 买断商品列表
