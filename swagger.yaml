@@ -98,22 +98,25 @@ paths:
 
           
    /user/sendVerifyCode:
-    get:
+    post:
       summary: verifyCode
       description: 发送验证码
       tags:
         - User
       parameters:
-        - name: phone
-          in: query
-          description: 手机号码
+        - name: json
+          in: body
+          description: 手机信息和用途
           required: true
-          type: string
-        - name: use_page
-          in: query
-          description: 使用用途 0 注册 1 忘记密码 后台注意，注册的情况要校验用户名有没有注册，忘记密码不需要校验
-          type: integer
-          format: int4
+          schema:
+            properties:
+              phone:
+                description: 手机号码
+                type: string
+              use_page:
+                description: 使用用途 0 注册 1 忘记密码 后台注意，注册的情况要校验用户名有没有注册，忘记密码不需要校验
+                type: integer
+                format: int4
       responses:
         200:
           description: 发送结果，直接看是否有error，有error代表失败，没有就代表成功
@@ -1017,7 +1020,6 @@ definitions:
         type: string
         description: 直播地址
       period:
-        type: object
         $ref: '#/definitions/SimplePeriod'
   Document:
     type: object
