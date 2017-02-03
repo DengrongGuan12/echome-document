@@ -855,7 +855,7 @@ definitions:
         type: integer
         format: int32
         description: 原价，单位分，需要根据用户当前已购买的课时结算
-      currentPrice:
+      current_price:
         type: integer
         format: int32
         description:
