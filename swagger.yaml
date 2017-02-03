@@ -644,7 +644,7 @@ paths:
           schema:
             properties:
               live:
-                $ref: '#/definitions/SimpleLive'
+                $ref: '#/definitions/Live'
               course:
                 $ref: '#/definitions/SimpleCourse'
    /teacher/qualityTeacher:
