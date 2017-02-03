@@ -644,7 +644,7 @@ paths:
           schema:
             properties:
               live:
-                $ref: '#/definitions/Live'
+                $ref: '#/definitions/SimpleLive'
               course:
                 $ref: '#/definitions/SimpleCourse'
    /teacher/qualityTeacher:
@@ -1009,6 +1009,7 @@ definitions:
       live_url:
         type: string
         description: 直播地址
+        
   SimpleLive:
     type: object
     description: 简单live
@@ -1019,6 +1020,12 @@ definitions:
       live_url:
         type: string
         description: 直播地址
+      start_time:
+        type: string
+        description: 开始时间 格式
+      state:  
+        type: string
+        description: 视频状态 CODED、CODING、ING、BEFORE
       period:
         $ref: '#/definitions/SimplePeriod'
   Document:
