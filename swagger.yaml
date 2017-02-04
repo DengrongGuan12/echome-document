@@ -466,7 +466,9 @@ paths:
               type: integer
               format: int8
               description: 是否购买，0或1
-            
+            remote_url:
+              type: string
+              description: 实际下载地址，只有is_buy是1的时候才有这个字段
    /course/period:
     get:
       summary: Period type
