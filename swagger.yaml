@@ -1078,7 +1078,10 @@ definitions:
         type: integer
         format: int32
         description: 购买数量
-  
+      is_buy:
+        type: integer
+        format: int32
+        description: 0表示未购买 1表示已购买
   SimpleDocument:
     type: object
     description: 资料简单信息

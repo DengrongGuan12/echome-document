@@ -15,31 +15,30 @@ basePath: /v1/teacher
 produces:
   - application/json
 paths:
-  
-   /user/changePassword:
+   /identity/login:
     post:
-      summary: 修改密码
-      description: 修改密码
+      summary: 登录
+      description: 教师登录
       tags:
-        - User
+        - identity
       parameters:
         - name: json
           in: body
-          description: 用户密码信息
+          description: 登录信息
           required: true
           schema:
             properties:
-              old_password:
+              account:
                 type: string
-                description: 旧密码
-              new_password:
+                description: 用户名，手机号
+              password:
                 type: string
-                description: 新密码
-              
+                description: 用户密码
       responses:
         200:
-          description: 修改结果，直接看是否有error，有error代表失败，没有就代表成功
-
+          description: 登录结果，若登录成功会返回用户信息并且Cookie
+          schema:
+            $ref: "#/definitions/Teacher"
    /user/resetPassword:
     post:
       summary: 重置密码
@@ -1078,7 +1077,10 @@ definitions:
         type: integer
         format: int32
         description: 购买数量
-  
+      is_buy:
+        type: integer
+        format: int32
+        description: 0表示未购买 1表示已购买
   SimpleDocument:
     type: object
     description: 资料简单信息
