@@ -15,7 +15,7 @@ basePath: /v1/common
 produces:
   - application/json
 paths:
-  
+
    /user/changePassword:
     post:
       summary: 修改密码
@@ -35,7 +35,7 @@ paths:
               new_password:
                 type: string
                 description: 新密码
-              
+
       responses:
         200:
           description: 修改结果，直接看是否有error，有error代表失败，没有就代表成功
@@ -62,7 +62,7 @@ paths:
               new_password:
                 type: string
                 description: 新密码
-              
+
       responses:
         200:
           description: 修改结果，直接看是否有error，有error代表失败，没有就代表成功
@@ -89,14 +89,14 @@ paths:
               img_key:
                 type: string
                 description: 头像的key，需要提前使用七牛的插件上传
- 
+
       responses:
         200:
           description: 若成功，返回最新的个人信息，否则有error
           schema:
             $ref: "#/definitions/User"
 
-          
+
    /user/sendVerifyCode:
     post:
       summary: verifyCode
@@ -120,7 +120,7 @@ paths:
       responses:
         200:
           description: 发送结果，直接看是否有error，有error代表失败，没有就代表成功
-              
+
    /user/register:
     post:
       summary: 注册
@@ -174,7 +174,7 @@ paths:
           description: 登录结果，若登录成功会返回用户信息并且Cookie
           schema:
             $ref: "#/definitions/User"
-  
+
    /carousel:
     get:
       summary: Carousel type
@@ -202,7 +202,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/School'
-    
+
    /school/major:
     get:
       summary: Major type
@@ -223,7 +223,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Major'
-   
+
    /course/search:
     get:
       summary: Course type
@@ -256,8 +256,8 @@ paths:
           description: 课程列表
           schema:
             $ref: '#/definitions/Courses'
-            
-   
+
+
    /course/documents:
     get:
       summary: 资料列表
@@ -285,7 +285,7 @@ paths:
           description: 资料列表
           schema:
             $ref: '#/definitions/Documents'
- 
+
    /course/comments:
     get:
       summary: 评论列表
@@ -314,8 +314,8 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/CourseComment' 
-   
+              $ref: '#/definitions/CourseComment'
+
    /course/commentReply:
     get:
       summary: 评论列表
@@ -344,7 +344,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/CourseComment' 
+              $ref: '#/definitions/CourseComment'
 
 
    /course/questions:
@@ -375,8 +375,8 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Question' 
-              
+              $ref: '#/definitions/Question'
+
    /course/makeGrade:
     post:
       summary: 发布评价
@@ -439,8 +439,8 @@ paths:
       responses:
         200:
           description: 评论结果，直接看是否有error，有error代表失败，没有就代表成功
- 
-          
+
+
    /course/previewDocument:
     get:
       summary: 预览文档
@@ -488,8 +488,8 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Period'  
-  
+              $ref: '#/definitions/Period'
+
    /course/shoppingList:
     get:
       summary: 买断商品列表
@@ -507,7 +507,7 @@ paths:
         200:
           description: 商品详情
           schema:
-            $ref: '#/definitions/ShoppingList'  
+            $ref: '#/definitions/ShoppingList'
    /pay/period:
     get:
       summary: 购买单独课时
@@ -522,14 +522,14 @@ paths:
         - name: channel
           in: query
           type: string
-          description: 支付手段 目前就支付宝 alipay_pc_direct
+          description: 支付手段 目前就支付宝 alipay_wap
           required: true
       tags:
         - Pay
       responses:
         200:
           description: ping++的charge对象，不用关心具体内容。
-  
+
    /pay/document:
     get:
       summary: 购买单门资料
@@ -544,7 +544,7 @@ paths:
         - name: channel
           in: query
           type: string
-          description: 支付手段 目前就支付宝 alipay_pc_direct
+          description: 支付手段 目前就支付宝 alipay_wap
           required: true
       tags:
         - Pay
@@ -566,14 +566,14 @@ paths:
         - name: channel
           in: query
           type: string
-          description: 支付手段 目前就支付宝 alipay_pc_direct
+          description: 支付手段 目前就支付宝 alipay_wap
           required: true
       tags:
         - Pay
       responses:
         200:
           description: ping++的charge对象，不用关心具体内容
-          
+
    /course/qualityComment:
     get:
       summary: QualityComment type
@@ -586,8 +586,8 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/QualityComment'  
-   
+              $ref: '#/definitions/QualityComment'
+
    /course/courseDetail:
     get:
       summary: 获取课程详情
@@ -604,8 +604,8 @@ paths:
         200:
           description: 课程详情
           schema:
-              $ref: '#/definitions/CourseDetail'  
-      
+              $ref: '#/definitions/CourseDetail'
+
    /course/periodDetail:
     get:
       summary: 获取课时详情
@@ -718,12 +718,12 @@ definitions:
       link_url:
         type: string
         description: 跳转地址
-        
-        
+
+
   School:
     type: object
     properties:
-      id: 
+      id:
         type: integer
         format: int32
         description: 学校id
@@ -733,12 +733,12 @@ definitions:
       img_url:
         type: string
         description: 学校logo
-  
+
   MajorCategory:
     type: object
     description: 专业大类
     properties:
-      id: 
+      id:
         type: integer
         format: int32
         description: 大类id
@@ -748,7 +748,7 @@ definitions:
       name:
         type: string
         description: 大类名称
-  
+
   SimpleMajor:
     type: object
     properties:
@@ -764,7 +764,7 @@ definitions:
         description: 专业名
       school:
         $ref: '#/definitions/School'
-        
+
   Major:
     type: object
     properties:
@@ -772,7 +772,7 @@ definitions:
         type: integer
         format: int32
         description: 专业id
-      code: 
+      code:
         type: string
         description: 专业代码
       name:
@@ -782,7 +782,7 @@ definitions:
         $ref: '#/definitions/School'
       category:
         $ref: '#/definitions/MajorCategory'
-  
+
   Subject:
     type: object
     properties:
@@ -793,17 +793,17 @@ definitions:
       code:
         type: string
         description: 科目代码
-      name: 
+      name:
         type: string
         description: 科目名
       img_url:
         type: string
         description: 课程背景图片url
-        
+
   Teacher:
-    type: object 
-    properties: 
-      id: 
+    type: object
+    properties:
+      id:
         type: integer
         format: int32
         description: 用户id
@@ -812,7 +812,7 @@ definitions:
         description: 昵称（姓名）
       img_url:
         type: string
-        description: 头像地址 
+        description: 头像地址
       account:
         type: string
         description: 账号
@@ -828,7 +828,7 @@ definitions:
       education:
         type: string
         description: 学历(如南京大学2016级环境学院研究生)
-        
+
   SimpleCourse:
     type: object
     properties:
@@ -840,10 +840,10 @@ definitions:
         type: string
       major:
         $ref: '#/definitions/SimpleMajor'
-        
+
       teacher:
         $ref: '#/definitions/SimpleTeacher'
-        
+
   SimpleTeacher:
       type: object
       properties:
@@ -851,12 +851,12 @@ definitions:
           type: integer
         name:
           type: string
-        img_url: 
+        img_url:
           type: string
-          
+
   Course:
     type: object
-    properties: 
+    properties:
       id:
         type: integer
         format: int32
@@ -877,10 +877,10 @@ definitions:
         $ref: '#/definitions/Teacher'
       major:
         $ref: '#/definitions/Major'
-      
+
   CourseDetail:
     type: object
-    properties: 
+    properties:
       id:
         type: integer
         format: int32
@@ -907,13 +907,13 @@ definitions:
         type: integer
         format: int8
         description: 是否买断， 0或1
-        
+
       teacher:
         $ref: '#/definitions/Teacher'
       major:
         $ref: '#/definitions/Major'
-        
-        
+
+
   Courses:
     type: object
     properties:
@@ -933,12 +933,12 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Course'
-      
+
   Period:
     type: object
     description: 课时
     properties:
-      id: 
+      id:
         type: integer
         description: 课时id
       number:
@@ -947,7 +947,7 @@ definitions:
       name:
         type: string
         description: 课时名称
-      date: 
+      date:
         type: string
         description: 课时日期
       price:
@@ -971,7 +971,7 @@ definitions:
       number:
         type: integer
         description: 课时编号
-        
+
   ShoppingList:
     type: object
     description: 买断商品列表
@@ -989,19 +989,19 @@ definitions:
         type: integer
         format: int32
         description: 提问次数
-      price:  
+      price:
         type: integer
         format: int32
         description: 现价
-        
-        
-      
-          
+
+
+
+
   QualityComment:
     type: object
     description: 首页的优质的评论
     properties:
-      id: 
+      id:
         type: integer
       course:
         $ref: '#/definitions/SimpleCourse'
@@ -1011,7 +1011,7 @@ definitions:
       user:
         $ref: '#/definitions/User'
 
-   
+
   Live:
     type: object
     description: 视频详情
@@ -1023,7 +1023,7 @@ definitions:
       start_time:
         type: string
         description: 开始时间 格式
-      state:  
+      state:
         type: string
         description: 视频状态 CODED、CODING、ING、BEFORE
       preview_url:
@@ -1035,12 +1035,12 @@ definitions:
       live_url:
         type: string
         description: 直播地址
-        
+
   SimpleLive:
     type: object
     description: 简单live
     properties:
-      id: 
+      id:
         type: integer
         description: id
       live_url:
@@ -1049,7 +1049,7 @@ definitions:
       start_time:
         type: string
         description: 开始时间 格式
-      state:  
+      state:
         type: string
         description: 视频状态 CODED、CODING、ING、BEFORE
       period:
@@ -1058,7 +1058,7 @@ definitions:
     type: object
     description: 资料信息
     properties:
-      id: 
+      id:
         type: integer
       name:
         type: string
@@ -1086,13 +1086,13 @@ definitions:
     type: object
     description: 资料简单信息
     properties:
-      id: 
+      id:
         type: integer
       name:
         type: string
         description: 资料名称
 
-        
+
   Documents:
     type: object
     properties:
@@ -1109,7 +1109,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Document'
-        
+
   Teachers:
     type: object
     properties:
@@ -1126,7 +1126,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Teacher'
-          
+
 
   User:
     type: object
@@ -1148,7 +1148,7 @@ definitions:
         type: integer
         format: int4
         description: 1男 2女 3未知
-        
+
   CourseComment:
     type: object
     properties:
@@ -1165,7 +1165,7 @@ definitions:
       star:
         type: number
         format: float
-        description: 星级，0代表没有评分 0.5-5 
+        description: 星级，0代表没有评分 0.5-5
       reply_count:
         type: integer
         format: int32
@@ -1175,7 +1175,7 @@ definitions:
       order_info:
         type: string
         description: 订单信息，可能是空的
-  
+
   Question:
     type: object
     properties:
@@ -1192,7 +1192,7 @@ definitions:
       answer:
         $ref: '#/definitions/Answer'
 
-  
+
   Answer:
     type: object
     properties:
@@ -1210,12 +1210,12 @@ definitions:
         type: integer
         format: int32
         description: 长度，如果是VOICE就是秒，如果是TEXT就是字数
-        
-      
+
+
       create_time:
         type: string
-        description: 发布时间    
-        
+        description: 发布时间
+
   Error:
       type: object
       properties:
@@ -1224,5 +1224,3 @@ definitions:
           format: int32
         message:
           type: string
-          
-    
