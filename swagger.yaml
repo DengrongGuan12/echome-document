@@ -677,6 +677,22 @@ paths:
                 $ref: '#/definitions/SimpleLive'
               course:
                 $ref: '#/definitions/SimpleCourse'
+   /course/getCoursesBySubjectId:
+    get:
+      summary: 根据科目id获取所有课程列表
+      parameters:
+        - name: subject_id
+          in: query
+          type: integer
+          format: int32
+          description: 科目id
+      tags:
+        - Course
+      responses:
+        200:
+          description: 课程列表
+          schema:
+            $ref: '#/definitions/SimpleCourse'
    /teacher/qualityTeacher:
     get:
       summary: Teacher type
@@ -690,30 +706,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Teacher'
-   /teacher/login:
-    post:
-      summary: 登录
-      description: 教师登录
-      tags:
-        - User
-      parameters:
-        - name: json
-          in: body
-          description: 登录信息
-          required: true
-          schema:
-            properties:
-              account:
-                type: string
-                description: 用户名，手机号
-              password:
-                type: string
-                description: 用户密码
-      responses:
-        200:
-          description: 登录结果，若登录成功会返回用户信息并且Cookie
-          schema:
-            $ref: "#/definitions/Teacher"
    /qiniu/getUploadToken:
     get:
       summary: 获取七牛上传文件的token
