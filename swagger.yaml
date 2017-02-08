@@ -679,22 +679,6 @@ paths:
                 $ref: '#/definitions/SimpleLive'
               course:
                 $ref: '#/definitions/SimpleCourse'
-   /course/getCoursesBySubjectId:
-    get:
-      summary: 根据科目id获取所有课程列表
-      parameters:
-        - name: subject_id
-          in: query
-          type: integer
-          format: int32
-          description: 科目id
-      tags:
-        - Course
-      responses:
-        200:
-          description: 课程列表
-          schema:
-            $ref: '#/definitions/SimpleCourse'
    /teacher/qualityTeacher:
     get:
       summary: Teacher type
@@ -924,7 +908,10 @@ definitions:
         $ref: '#/definitions/Teacher'
       major:
         $ref: '#/definitions/Major'
-
+      other_courses:
+        type: array
+        items:
+          $ref: '#/definitions/SimpleCourse'
 
   Courses:
     type: object
