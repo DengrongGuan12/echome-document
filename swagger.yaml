@@ -397,10 +397,14 @@ paths:
                 type: integer
                 format: int32
                 description: 课程id
-              order_id:
+              document_id:
                 type: integer
                 format: int32
-                description: 对应的订单id
+                description: 如果是资料的评价，传入资料id
+              period_id:
+                type: integer
+                format: int32
+                description: 如果是课时的评价，传入课时的id
               star:
                 type: number
                 format: float
