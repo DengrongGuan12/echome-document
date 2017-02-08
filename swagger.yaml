@@ -1220,8 +1220,9 @@ definitions:
         type: integer
         format: int32
         description: 长度，如果是VOICE就是秒，如果是TEXT就是字数
-
-
+      buyer_num:
+        type: integer
+        description: 购买的人数
       create_time:
         type: string
         description: 发布时间
