@@ -583,17 +583,19 @@ paths:
       summary: 生成订单
       description: 根据订单类型和对象id生成订单
       parameters:
-        - name: object_id
-          in: query
-          type: integer
-          format: int32
-          description: 相关对象id（课程，资料等）
+        - name: json
+          in: body
+          description: 生成订单信息
           required: true
-        - name: order_type
-          in: query
-          type: string
-          description: 订单类型（DOC, COURSE, ANSWER, PERIOD, DOC_PACK, PEEK）
-          required: true
+          schema:
+            properties:
+              object_id:
+                type: integer
+                format: int32
+                description: 商品实体id
+              order_type:
+                type: string
+                description: 订单类型
       tags:
         - Order
       responses:
