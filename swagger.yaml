@@ -371,11 +371,9 @@ paths:
         - Course
       responses:
         200:
-          description: 评论列表
+          description:  问题列表
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/Question'
+            $ref: '#/definitions/Questions'
 
    /course/makeGrade:
     post:
@@ -989,7 +987,22 @@ definitions:
       free_ask_num:
         type: integer
         description: 免费提问次数
-
+  Questions:
+    type: object
+    properties:
+      offset:
+        type: integer
+        description: 偏移
+      limit:
+        type: integer
+        description: 限制数量
+      count:
+        type: integer
+        description: 总数
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/Question'
   Courses:
     type: object
     properties:
@@ -1286,6 +1299,9 @@ definitions:
       create_time:
         type: string
         description: 发布时间
+      user:
+        type: object
+        $ref: '/definitions/User'
       answer:
         $ref: '#/definitions/Answer'
 
@@ -1310,6 +1326,9 @@ definitions:
       buyer_num:
         type: integer
         description: 购买的人数
+      teacher:
+        type: object
+        $ref: '#/definitions/SimpleTeacher'
       create_time:
         type: string
         description: 发布时间
