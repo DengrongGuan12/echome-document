@@ -773,7 +773,7 @@ paths:
                 type: string
       responses:
         200:
-          description: 成功返回1，参数有问题返回error
+          description: 成功返回自增id>0，参数有问题返回error
           schema:
             properties:
               data:
