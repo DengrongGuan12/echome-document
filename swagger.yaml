@@ -635,7 +635,24 @@ paths:
           description: 课程详情
           schema:
               $ref: '#/definitions/CourseDetail'
-
+   /course/freeAskNum:
+    get:
+      summary: 获取用户剩余的免费提问次数
+      parameters:
+        - name: course_id
+          in: query
+          type: integer
+          format: int32
+          description: 课程id
+      tags:
+        - Course
+      responses:
+        200:
+          schema:
+            properties:
+              data:
+                type: integer
+                description: 剩余次数
    /course/periodDetail:
     get:
       summary: 获取课时详情
