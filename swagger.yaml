@@ -912,6 +912,15 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/SimpleCourse'
+      period_num:
+        type: integer
+        description: 课时数量
+      doc_num:
+        type: integer
+        description: 资料数量
+      free_ask_num:
+        type: integer
+        description: 免费提问次数
 
   Courses:
     type: object
@@ -1034,7 +1043,28 @@ definitions:
       live_url:
         type: string
         description: 直播地址
-
+      video_list:
+        type: array
+        items:
+          $ref: '#/definitions/Video'
+  Video:
+    type: object
+    description: 录制的视频
+    properties:
+      id:
+        type: integer
+      video_url:
+        type: string
+        description: 视频地址
+      file_size:
+        type: integer
+        description: 文件大小
+      start_time:
+        type: integer
+        description: 开始时间戳
+      end_time:
+        type: integer
+        description: 结束时间戳
   SimpleLive:
     type: object
     description: 简单live
