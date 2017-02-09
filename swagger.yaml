@@ -727,6 +727,55 @@ paths:
             properties:
               token:
                 type: string
+   /about/:
+    get:
+      summary: 获取关于我们文本
+      tags:
+        - About
+      responses:
+        200:
+           schema:
+            properties:
+              data:
+                type: string
+   /about/questions:
+    get: 
+      summary: 获取常见问题文本
+      tags:
+        - About
+      responses:
+        200:
+          schema:
+            properties:
+              data:
+                type: string
+          
+   /about/feedback:
+    post:
+      summary: 提交意见反馈
+      tags:
+        - About
+      parameters:
+        - name: json
+          in: body
+          required: true
+          schema:
+            properties:
+              title:
+                type: string
+              content:
+                type: string
+              img_key:
+                type: string
+              contact:
+                type: string
+      responses:
+        200:
+          description: 成功返回1，参数有问题返回error
+          schema:
+            properties:
+              data:
+                type: integer
 definitions:
   Carousel:
     type: object
