@@ -1300,7 +1300,7 @@ definitions:
         type: string
         description: 发布时间
       user:
-        $ref: '/definitions/User'
+        $ref: '#/definitions/User'
       answer:
         $ref: '#/definitions/Answer'
 
