@@ -2,8 +2,8 @@
 # as a demonstration of an API spec in YAML
 swagger: '2.0'
 info:
-  title: CoursePlus API
-  description: CoursePlus API, 返回值的json格式是默认用data包起来
+  title: CarService API
+  description: CarService API, 返回值的json格式是默认用data包起来
   version: "1.0.0"
 # the domain of the service
 host: 120.26.65.167:8080
